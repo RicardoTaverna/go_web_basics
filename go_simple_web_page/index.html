@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go Web</title>
+    <link rel="stylesheet" href="/assets/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+</head>
+<body>
+    <main>
+        <header class="shadow">
+          <a class="logo" href="/">Buscador de Notícias</a>
+          <form action="/search" method="GET">
+            <input
+              autofocus
+              class="search-input"
+      
+              value="{{ .Query }}"
+      
+              placeholder="Enter a news topic"
+              type="search"
+              name="q"
+            />
+          </form>
+          <a
+            href="https://github.com/freshman-tech/news"
+            class="button github-button"
+            >Veja o código <i class="fab fa-github"></i></a
+          >
+        </header>      
+        <section class="container">
+      
+          <ul class="search-results">      
+            {{ range.Results.Articles }}      
+            <li class="news-article shadow">      
+              <div>      
+                <a target="_blank" rel="noreferrer noopener" href="{{.URL}}">      
+                  <h3 class="title">{{.Title }}</h3>      
+                </a>      
+                <p class="description">{{ .Description }}</p>      
+                <div class="metadata">      
+                  <p class="source">{{ .Source.Name }}</p>      
+                  <time class="published-date">{{ .FormatPublishedDate }}</time>      
+                </div>      
+              </div>      
+              <img class="article-image" src="{{ .URLToImage }}" />
+      
+            </li>
+      
+            {{ end }}
+      
+          </ul>      
+        </section>      
+      </main>
+</body>
+</html>
